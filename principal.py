@@ -20,10 +20,9 @@ while (isActive) :
                 os.system("cls")
                 alumnos.update(st.regAlumno())
                 rta = input("Desea registrar otro Alumno S(si) o N(No)").upper()
-        
         elif (opMenu == 2):
-            menu.menuNotas()
-            
+                codigo = input("Ingrese el codigo del estudiante a buscar :")
+                menu.menuNotas(st.buscar(codigo,alumnos))
         elif (opMenu == 3):
             codAlumno = input("Ingrese el codigo a buscar :")
             st.buscarAlumno(codAlumno,alumnos)

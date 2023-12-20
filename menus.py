@@ -1,5 +1,5 @@
 import os
-
+import notas as nota
 menu = "1. Registrar Alumno\n2. Registrar Notas\n3. Buscar estudiante\n4. Salir"
 subMenuNotas = "1.Parciales\n2.Quices\n3.Trabajos\n4.Regresar al menu principal"
 hasError = True
@@ -14,19 +14,32 @@ def menuPrincipal() -> int:
         except ValueError:
             hasError = True
 
-def menuNotas() -> int:
+def menuNotas(alumnos : dict):
     os.system('cls')
     header = """
     ********************************
     *   MENU REGISTRO DE NOTAS     *
     ********************************
     """
-    global hasError
-    print(header)
-    print(subMenuNotas)
-    while (hasError == True):
+    isActiveMenu = True
+    while (isActiveMenu):
+        os.system("cls")
+        print(header)
         try:
-            return int(input(":)"))
+            print(subMenuNotas)
+            opMenu = int(input(":)"))
         except ValueError:
-            hasError = True
+            print("Opcion invalida...Recuerde que son enteros")
+        else:
+            if (opMenu == 1):
+                nota.addGrade(alumnos,"parciales")
+            elif (opMenu == 2):
+                nota.addGrade(alumnos,"quices")
+            elif (opMenu == 3):
+                nota.addGrade(alumnos,"trabajos")
+            elif (opMenu == 4):
+                isActiveMenu = False
+            else:
+                print("La opcion ingresada es invalida...")
+                os.system("pause")
 
